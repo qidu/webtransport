@@ -178,7 +178,7 @@ const mediaSource = new MediaSource();
 await new Promise(resolve => mediaSource.addEventListener('sourceopen', () => resolve(), {once: true}));
 const sourceBuffer = mediaSource.addSourceBuffer('video/webm; codecs="opus, vp09.00.10.08"');
 const wt = new WebTransport('https://example.com/video');
-for await (const receiveStream of transport.incomingUnidirectionalStreams) {
+for await (const receiveStream of wt.incomingUnidirectionalStreams) {
   for await (const buffer of receiveStream) {
     sourceBuffer.appendBuffer(buffer);
   }
